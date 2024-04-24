@@ -6,6 +6,8 @@ def compare_lines_with_dict(input_text, dictionary):
  lineno=0
  notfoundlines=[]
  for line in lines:
+    if line=="":
+     continue
     lineno+=1
     matching_value = ""
     found_match=False
