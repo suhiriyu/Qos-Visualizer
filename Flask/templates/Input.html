@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QoS Calculator and Visualiser</title>
+    <style>
+        /* CSS code for styling */
+        .qos-calculator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 30px;
+            line-height: 80%;
+            padding: 0 20px;
+        }
+
+        .header {
+            background-color: #08bae2;
+            width: 100%;
+            min-height: 64px;
+        }
+
+        .logo {
+            position:relative;
+            top: 220px;
+             width: 200px;
+        }
+
+        .title {
+            color: #9c6363;
+            margin-top: 119px;
+            margin-left: 100px;
+            font: 700 50px/48% Source Sans Pro, -apple-system, Roboto, Helvetica, sans-serif;
+        }
+
+        .input-container {
+            display: flex;
+            margin-top: 61px;
+            width: 979px;
+            max-width: 100%;
+            gap: 20px;
+        }
+
+        .from-container,
+        .to-container {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            margin: auto 0;
+        }
+
+        .from-label,
+        .to-label {
+            color: #000;
+            font-family: Source Serif Pro, sans-serif;
+            font-weight: 400;
+            align-self: center;
+        }
+
+        .from-select,
+        .to-select {
+            font-family: Source Serif Pro, sans-serif;
+            border-radius: 10px;
+            background-color: #e0e0e0;
+            margin-top: 15px;
+            color: #373030;
+            font-weight: 700;
+            padding: 10px;
+        }
+
+        .input-configuration {
+            font-family: Source Serif Pro, sans-serif;
+            border-radius: 10px;
+            background-color: #d9d9d9;
+            margin-top: 50px;
+            width: 612px;
+            max-width: 100%;
+            align-items: center;
+            color: #000;
+            font-weight: 400;
+            justify-content: center;
+            padding: 190px 60px 161px;
+            text-align: center;
+        }
+
+        .convert-button {
+            font-family: Source Serif Pro, sans-serif;
+            border-radius: 5px;
+            background-color: #08bae2;
+            margin-top: 43px;
+            color: white;
+            font-weight: 400;
+            white-space: nowrap;
+            justify-content: center;
+            padding: 15px 30px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .convert-button:hover {
+            background-color: #007bb5;
+        }
+
+        .footer {
+            background-color: #08bae2;
+            width: 100%;
+            min-height: 52px;
+            margin-top: 42px;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="qos-calculator">
+        <header class="header"><img src="{{url_for('static', filename='/Image/download.png')}}" alt="Cisco Logo" class="logo"></header>
+        <h1 class="title"> QOS CALCULATOR AND VISUALIZER</h1>
+        <form action="/convert" id="inputform" method="post">
+        <div class="input-container">
+            <div class="from-container">
+                <label for="from-select" class="from-label">FROM</label>
+                <select id="from-select" class="from-select" name="from-select">
+                    <option value="NONE">Choose series</option>
+                    <option value="nexus9k">Nexus 9k</option>
+                    <option value="catalyst9k">Catalyst 9k</option>
+                    <option value="meraki">Meraki</option>
+                </select>
+            </div>
+            <div class="to-container">
+                <label for="to-select" class="to-label">TO</label>
+                <select id="to-select" class="to-select" name="to-select">
+                    <option value="NONE">Choose series</option>
+                    <option value="nexus9k">Nexus 9k</option>
+                    <option value="catalyst9k">Catalyst 9k</option>
+                    <option value="meraki">Meraki</option>
+                </select>
+            </div>
+            
+        </div>
+        
+        <br>
+        <br>
+
+        
+        <textarea form="inputform" name= "inputconfig" style="font-size:x-large;border: 0px solid; border-radius: 10px; width: 800px; height: 350px; background-color: #e0e0e0;" placeholder="INPUT CONFIGURATION"></textarea>
+        <br>
+            <input type="submit" value="convert" class="convert-button">
+        </form>
+        
+        <footer class="footer"></footer>
+    </main>
+</body>
+
+</html>

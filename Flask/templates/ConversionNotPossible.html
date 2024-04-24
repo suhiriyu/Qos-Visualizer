@@ -1,0 +1,148 @@
+<style>
+    .container {
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 30px;
+        color: #000;
+        font-weight: 400;
+        line-height: 80%;
+    }
+
+    .header {
+        background-color: #08bae2;
+        width: 100%;
+        min-height: 64px;
+    }
+
+    @media (max-width: 991px) {
+        .header {
+            max-width: 100%;
+        }
+    }
+
+    .back-button-container {
+        display: flex;
+        margin-top: 15px;
+        width: 100%;
+        max-width: 1397px;
+        gap: 20px;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    @media (max-width: 991px) {
+        .back-button-container {
+            max-width: 100%;
+            flex-wrap: wrap;
+        }
+    }
+
+  .logo {
+            position:relative;
+            top: 220px;
+             width: 200px;
+    }
+
+    .back-button {
+        font-family: 'Source Serif Pro', serif;
+        margin-top: 10px;
+    }
+
+    .page-title {
+        color: #9c6363;
+            margin-top: 119px;
+            margin-left: 100px;
+            font: 700 50px/48% Source Sans Pro, -apple-system, Roboto, Helvetica, sans-serif;
+
+
+        /* color: #9c6363;
+        margin-top: 22px;
+        margin-left: 100px;
+        font: 700 50px/48% 'Source Sans Pro', sans-serif; */
+    }
+
+    @media (max-width: 991px) {
+        .page-title {
+            max-width: 100%;
+            font-size: 40px;
+        }
+    }
+
+
+    .input-section-title {
+        font-family: 'Source Serif Pro', serif;
+        margin-top: 156px;
+    }
+
+    @media (max-width: 991px) {
+        .input-section-title {
+            max-width: 100%;
+            margin-top: 40px;
+        }
+    }
+    .back {
+            font-family: Source Serif Pro, sans-serif;
+            border-radius: 5px;
+            background-color: #08bae2;
+            margin-top: 43px;
+            color: white;
+            font-weight: 400;
+            white-space: nowrap;
+            justify-content: center;
+            padding: 15px 30px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .back:hover {
+            background-color: #007bb5;
+        }
+
+    .output-section {
+            font-family: Source Serif Pro, sans-serif;
+            border-radius: 10px;
+            background-color: #d9d9d9;
+            margin-top: 30px;
+            width: 612px;
+            max-width: 100%;
+            align-items: center;
+            color: #000;
+            font-weight: 400;
+            justify-content: center;
+            padding: 150px 60px 161px;
+            text-align: center;
+        }
+
+    @media (max-width: 991px) {
+        .output-section {
+            padding: 40px 20px;
+        }
+    }
+
+    .footer {
+            background-color: #08bae2;
+            width: 100%;
+            min-height: 52px;
+            margin-top: 42px;
+        }
+
+    @media (max-width: 991px) {
+        .footer {
+            max-width: 100%;
+            margin-top: 40px;
+        }
+    }
+</style>
+
+<div class="container">
+    <header class="header"><img src="{{url_for('static', filename='/Image/download.png')}}" alt="Cisco Logo" class="logo"></header>
+    <h1 class="page-title">QOS CALCULATOR AND VISUALIZER</h1>
+    
+    <h2 class="input-section-title">Conversion for selected series is not present is database.</h2>
+    
+    
+<button class="back" ><a href="/">BACK</a></button>
+    <footer class="footer"></footer>
+</div>
