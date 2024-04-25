@@ -15,17 +15,26 @@ def abc():
 @app.route('/convert',methods=['POST','GET'])
 def convert():
     config = request.form['inputconfig']
+    print(config)
     choice1 = request.form['from-select']
     choice2 = request.form['to-select']
     if choice1 == "NONE" or choice2 == "NONE":
         return render_template('NoChoiceSelected.html')
+    
     if choice1=="catalyst9k" and choice2=="nexus9k":
      if config=="":
          return render_template('NoInput.html')
      resultingdict=data_dict
      result , faults = compare_lines_with_dict(config,resultingdict)
-     print(faults)
      return render_template('output.html',result=result,faults=faults)
+    
+    if choice1=="nexus9k" and choice2=="catalyst9k":
+     if config=="":
+         return render_template('NoInput.html')
+     resultingdict=data_dict
+     result , faults = compare_lines_with_dict(config,resultingdict)
+     return render_template('output.html',result=result,faults=faults)
+     
     return render_template('ConversionNotPossible.html')
   
 @app.route('/input')

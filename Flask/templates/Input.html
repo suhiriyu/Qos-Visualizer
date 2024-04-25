@@ -1,154 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QoS Calculator and Visualiser</title>
     <style>
         /* CSS code for styling */
-        .qos-calculator {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-size: 30px;
-            line-height: 80%;
-            padding: 0 20px;
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
         }
 
-        .header {
-            background-color: #08bae2;
-            width: 100%;
-            min-height: 64px;
+        main {
+            padding: 20px;
         }
 
-        .logo {
-            position:relative;
-            top: 220px;
-             width: 200px;
-        }
-
-        .title {
-            color: #9c6363;
-            margin-top: 119px;
-            margin-left: 100px;
-            font: 700 50px/48% Source Sans Pro, -apple-system, Roboto, Helvetica, sans-serif;
-        }
-
-        .input-container {
-            display: flex;
-            margin-top: 61px;
-            width: 979px;
+        header img {
             max-width: 100%;
-            gap: 20px;
+            height: auto;
         }
 
-        .from-container,
-        .to-container {
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-            margin: auto 0;
-        }
-
-        .from-label,
-        .to-label {
-            color: #000;
-            font-family: Source Serif Pro, sans-serif;
-            font-weight: 400;
-            align-self: center;
-        }
-
-        .from-select,
-        .to-select {
-            font-family: Source Serif Pro, sans-serif;
-            border-radius: 10px;
-            background-color: #e0e0e0;
-            margin-top: 15px;
-            color: #373030;
-            font-weight: 700;
-            padding: 10px;
-        }
-
-        .input-configuration {
-            font-family: Source Serif Pro, sans-serif;
-            border-radius: 10px;
-            background-color: #d9d9d9;
-            margin-top: 50px;
-            width: 612px;
-            max-width: 100%;
-            align-items: center;
-            color: #000;
-            font-weight: 400;
-            justify-content: center;
-            padding: 190px 60px 161px;
+        h1 {
+            font-size: 54px;
             text-align: center;
+            color: #9c6363;
+            /* Change this color to the desired color */
         }
 
-        .convert-button {
-            font-family: Source Serif Pro, sans-serif;
-            border-radius: 5px;
-            background-color: #08bae2;
-            margin-top: 43px;
-            color: white;
-            font-weight: 400;
-            white-space: nowrap;
-            justify-content: center;
-            padding: 15px 30px;
-            cursor: pointer;
-            transition: background-color 0.3s;
+        form {
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
-        .convert-button:hover {
-            background-color: #007bb5;
-        }
-
-        .footer {
-            background-color: #08bae2;
+        select,
+        textarea {
             width: 100%;
-            min-height: 52px;
-            margin-top: 42px;
+            box-sizing: border-box;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .buttons {
+            text-align: center;
+
+        }
+
+        input[type="submit"],
+        input[type="button"] {
+            width: 45%;
+            padding: 10px;
+            margin: 10px;
+            box-sizing: border-box;
+        }
+
+        @media only screen and (min-width: 600px) {
+            .input-container {
+                display: flex;
+            }
+
+            .input-container div {
+                flex: 1;
+                margin-right: 10px;
+            }
+
+            .input-container div:last-child {
+                margin-right: 0;
+            }
+
+            textarea {
+                width: calc(50% - 5px);
+            }
         }
     </style>
 </head>
 
-<body>
-    <main class="qos-calculator">
-        <header class="header"><img src="{{url_for('static', filename='/Image/download.png')}}" alt="Cisco Logo" class="logo"></header>
-        <h1 class="title"> QOS CALCULATOR AND VISUALIZER</h1>
+<body onload="loadFormData()">
+    
+        <header style="background-color: #08bae2; width: auto; height: 54px;"><img src="{{url_for('static', filename='/Image/download.png')}}" alt="Cisco Logo" style="position: relative; top: 100px; width: 100px;"></header>
+        <h1 style="margin-top: 100px ; ">QOS CALCULATOR AND VISUALIZER</h1>
         <form action="/convert" id="inputform" method="post">
-        <div class="input-container">
-            <div class="from-container">
-                <label for="from-select" class="from-label">FROM</label>
-                <select id="from-select" class="from-select" name="from-select">
-                    <option value="NONE">Choose series</option>
-                    <option value="nexus9k">Nexus 9k</option>
-                    <option value="catalyst9k">Catalyst 9k</option>
-                    <option value="meraki">Meraki</option>
-                </select>
+            <div class="input-container">
+                <div>
+                    <label for="from-select">FROM</label>
+                    <select id="from-select" name="from-select" style="font-family: Source Serif Pro, sans-serif;
+                    border-radius: 10px;
+                    background-color: #e0e0e0;
+                    margin-top: 15px;
+                    color: #373030;
+                    font-weight: 700;
+                    padding: 10px;">
+                        <option value="NONE">Choose series</option>
+                        <option value="nexus9k">Nexus 9k</option>
+                        <option value="catalyst9k">Catalyst 9k</option>
+                        <option value="meraki">Meraki</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="to-select">TO</label>
+                    <select id="to-select" name="to-select" style="font-family: Source Serif Pro, sans-serif;
+                    border-radius: 10px;
+                    background-color: #e0e0e0;
+                    margin-top: 15px;
+                    color: #373030;
+                    font-weight: 700;
+                    padding: 10px;">
+                        <option value="NONE">Choose series</option>
+                        <option value="nexus9k">Nexus 9k</option>
+                        <option value="catalyst9k">Catalyst 9k</option>
+                        <option value="meraki">Meraki</option>
+                    </select>
+                </div>
             </div>
-            <div class="to-container">
-                <label for="to-select" class="to-label">TO</label>
-                <select id="to-select" class="to-select" name="to-select">
-                    <option value="NONE">Choose series</option>
-                    <option value="nexus9k">Nexus 9k</option>
-                    <option value="catalyst9k">Catalyst 9k</option>
-                    <option value="meraki">Meraki</option>
-                </select>
-            </div>
-            
-        </div>
-        
-        <br>
-        <br>
 
-        
-        <textarea form="inputform" name= "inputconfig" style="font-size:x-large;border: 0px solid; border-radius: 10px; width: 800px; height: 350px; background-color: #e0e0e0;" placeholder="INPUT CONFIGURATION"></textarea>
-        <br>
-            <input type="submit" value="convert" class="convert-button">
+            <br>
+            <br>
+
+            <textarea form="inputform" name="inputconfig" id="inputconfig"
+                style="font-size: x-large;border: 0px solid; border-radius: 10px; width: 1000px; height: 350px; background-color: #e0e0e0; align-self: center;"
+                placeholder="INPUT CONFIGURATION"></textarea>
+            <br>
+            <div class="buttons">
+                <input type="submit" value="convert" id="convert-button" style="font-family: Source Serif Pro, sans-serif;border-radius: 5px;
+                background-color: #08bae2;
+                margin-top: 43px;
+                color: white;
+                font-weight: 400;
+                white-space: nowrap;
+                justify-content: center;
+                padding: 15px 30px;
+                cursor: pointer;
+                transition: background-color 0.3s;" onclick="saveFormData()">
+                <input type="button" value="clear" id="clear-button" style="font-family: Source Serif Pro, sans-serif;
+                border-radius: 5px;
+                background-color: #08bae2;
+                margin-top: 43px;
+                color: white;
+                font-weight: 400;
+                white-space: nowrap;
+                justify-content: center;
+                padding: 15px 30px;
+                cursor: pointer;
+                transition: background-color 0.3s;"onclick="clearFormData()">
+            </div>
         </form>
-        
-        <footer class="footer"></footer>
-    </main>
+        <br><br><br><br>
+        <footer style="background-color: #08bae2; width: auto; height: 48px;"></footer>
+    
+    <script>
+        function loadFormData() {
+            document.getElementById('inputconfig').value = localStorage.getItem('inputconfig') || '';
+            document.getElementById('from-select').value = localStorage.getItem('from-select') || 'NONE';
+            document.getElementById('to-select').value = localStorage.getItem('to-select') || 'NONE';
+        }
+        function saveFormData() {
+            localStorage.setItem('inputconfig', document.getElementById('inputconfig').value);
+            localStorage.setItem('from-select', document.getElementById('from-select').value);
+            localStorage.setItem('to-select', document.getElementById('to-select').value);
+        }
+        function clearFormData() {
+            document.getElementById('inputconfig').value = '';
+            document.getElementById('from-select').value = 'NONE';
+            document.getElementById('to-select').value = 'NONE';
+        }
+    </script>
 </body>
 
 </html>
