@@ -21,6 +21,9 @@ def convert():
     if choice1 == "NONE" or choice2 == "NONE":
         return render_template('NoChoiceSelected.html')
     
+    if choice1==choice2:
+       return render_template('SameSeriesSelected.html')
+
     if choice1=="catalyst9k" and choice2=="nexus9k":
      if config=="":
          return render_template('NoInput.html')

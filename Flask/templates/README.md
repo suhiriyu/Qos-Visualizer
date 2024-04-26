@@ -1,11 +1,13 @@
 # QoS Calculator and Visualiser 📊
 
-This web application allows users to calculate Quality of Service (QoS) configurations and visualize network settings using HTML and CSS.
+This web application allows users to calculate  the equivalent Quality of Service (QoS) configurations of desires series .
 
 ## Simple tech stack being used
-Language : JavaScript
-Framework: HTML
+Language : HTML,CSS,JavaScript
+Framework: Flask
 Styling: CSS
+Backend:Python
+
 ## Features
 - **Responsive Design:** Optimized for various screen sizes and devices.
 - **Calculator:** Input configuration and convert to desired network series.
