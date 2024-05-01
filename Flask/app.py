@@ -1,5 +1,5 @@
 import pandas as pd
-from GetDictionary import data_dict
+from GetDictionary import data_dictionary
 from Conversion import compare_lines_with_dict
 from flask import Flask,render_template,request
 app=Flask(__name__)
@@ -27,14 +27,14 @@ def convert():
     if choice1=="catalyst9k" and choice2=="nexus9k":
      if config=="":
          return render_template('NoInput.html')
-     resultingdict=data_dict
+     resultingdict=data_dictionary(choice1,choice2)
      result , faults = compare_lines_with_dict(config,resultingdict)
      return render_template('output.html',result=result,faults=faults)
     
     if choice1=="nexus9k" and choice2=="catalyst9k":
      if config=="":
          return render_template('NoInput.html')
-     resultingdict=data_dict
+     resultingdict=data_dictionary(choice1,choice2)
      result , faults = compare_lines_with_dict(config,resultingdict)
      return render_template('output.html',result=result,faults=faults)
      

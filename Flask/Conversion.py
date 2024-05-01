@@ -39,5 +39,6 @@ def compare_lines_with_dict(input_text, dictionary):
         temp+= str(FaultLiineNumber)
         temp+=","
     
-    
+    if answer == "":
+     answer+="NOTE: There are no equivalent commands. You can continue without including these in input config."
  return answer,temp
