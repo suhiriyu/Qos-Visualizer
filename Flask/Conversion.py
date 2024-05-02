@@ -1,7 +1,7 @@
 
 def compare_lines_with_dict(input_text, dictionary):
  lines = [line.strip().lower() for line in input_text.split('\n')]
- 
+ print(lines)
  matching_values = []
  lineno=0
  notfoundlines=[]
